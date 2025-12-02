@@ -20,7 +20,7 @@ const sendContactEmail = async (req, res) => {
 
     const mailOptions = {
       from: email, 
-      to: 'roushankumarcool@gmail.com',
+      to: process.env.EMAIL_USER,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h3>New Message Received via GoPass Contact Form</h3>
