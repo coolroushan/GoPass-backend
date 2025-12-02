@@ -128,7 +128,24 @@ const getVisitorStats = async (req, res) => {
     res.status(500).json({ message: 'Server Error', error: error.message });
   }
 };
+// @desc    Delete a visitor
+// @route   DELETE /api/visitors/:id
+const deleteVisitor = async (req, res) => {
+  try {
+    const visitor = await Visitor.findByIdAndDelete(req.params.id);
+
+    if (!visitor) {
+      return res.status(404).json({ message: 'Visitor not found' });
+    }
+
+    res.json({ id: req.params.id, message: 'Visitor deleted successfully' });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error', error: error.message });
+  }
+};
 
 // Don't forget to export it!
-module.exports = { registerVisitor, getVisitors, scanVisitor, getVisitorStats };
+module.exports = { registerVisitor, getVisitors, scanVisitor, getVisitorStats, deleteVisitor };
 
