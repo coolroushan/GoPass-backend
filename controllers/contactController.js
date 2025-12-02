@@ -7,7 +7,7 @@ const sendContactEmail = async (req, res) => {
   if (!name || !email || !message) {
     return res.status(400).json({ msg: 'Please enter all fields' });
   }
-
+// checking for empty fields
   try {
     // Configure Transporter
     const transporter = nodemailer.createTransport({
